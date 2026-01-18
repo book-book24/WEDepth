@@ -1,0 +1,67 @@
+{
+    "generic": {
+        "seed": 42
+    },
+    "training": {
+        "epochs": 20,
+        "warm_up": 3,
+        "batch_size": 8,
+        "f16": true,
+        "lr": 0.0002,
+        "wd": 0.02
+    },
+    "data": {
+        "crop": "eigen",
+        "train_dataset": {
+            "name": "KITTIDataset",
+            "root": "../kitti/",
+            "split": "kitti_eigen_train.txt"
+        },
+        "val_dataset": [{"name": "KITTIDataset", "root": "../kitti/"},
+            {"name": "ArgoverseDataset", "root": "../argo_out/val/"},
+            {"name": "DDADDataset", "root": "../ddad/"}
+            ],
+
+        "augmentations": {
+            "horizontal_flip": 0.5,
+            "random_rotation": 5,
+            "random_scale": 0.1,
+            "random_translation": 0.1,
+            "random_brightness": 0.1,
+            "random_contrast": 0.1,
+            "random_saturation": 0.1,
+            "random_gamma": 0.1,
+            "random_hue": 0.1,
+            "random_sharpness": 0.1,
+            "random_posterize": 4,
+            "random_solarize": 0.2,
+            "rotation_p": 1,
+            "scale_p": 1,
+            "translation_p": 1,
+            "brightness_p": 1,
+            "contrast_p": 1,
+            "saturation_p": 1,
+            "gamma_p": 1,
+            "hue_p": 1,
+            "sharpness_p": 0,
+            "posterize_p": 0,
+            "solarize_p": 0,
+            "equalize_p": 0,
+            "autocontrast_p": 0
+        }
+    },
+
+    "model": {
+        "prompt_num": 50,
+        "prompt_dim": 384,
+        "out_dim": 384,
+        "token_dim": 1024,
+        "dino_type": "../dinov2-large/",
+        "layer_idx": [5, 11, 17, 23],
+        "encoder_name": "swin_base",
+        "patch_size": 14,
+        "ext_num": 2,
+        "inj_num": 1,
+        "dropout": 0.0
+    }
+}
